@@ -1,0 +1,43 @@
+﻿<Window x:Class="SystemClaima_MainWindow.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SystemClaima_MainWindow"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="450" Width="800">
+    <Grid>
+        <!-- Define two columns in the Grid: Left for navigation, Right for content -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Panel: Navigation for different sections -->
+        <StackPanel Background="#4C2947" Grid.Column="0">
+            <!-- Login Button -->
+            <Button x:Name="login_btn" Content="Login" 
+                Style="{StaticResource SideButtonStyle}" Margin="10" />
+            <!-- Claim Verification/Approval Button -->
+            <Button x:Name="verifyClaim_btn" Content="Verify/Approve Claims" 
+                Style="{StaticResource SideButtonStyle}" Margin="10" />
+            <!-- Exit Button -->
+            <Button x:Name="exit_btn" Content="EXIT"
+                Style="{StaticResource SideButtonStyle}" Margin="10" />
+        </StackPanel>
+
+        <!-- Right Panel: Main content area for forms and data -->
+        <StackPanel Grid.Column="1" Margin="20">
+            <!-- Claim Verification/Approval Section -->
+            <TextBlock Text="Verify/Approve Claims" FontSize="26" FontWeight="Bold" FontStyle="Italic" Margin="20,40,0,20"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Claim ID:" VerticalAlignment="Center"/>
+                <TextBox x:Name="claimIdTBox" Width="300" Margin="10,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="approveClaim_btn" Content="Approve" Style="{StaticResource ButtonStyle}" Width="100"/>
+                <Button x:Name="rejectClaim_btn" Content="Reject" Style="{StaticResource ButtonStyle}" Width="100" Margin="10,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
