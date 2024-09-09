@@ -1,0 +1,51 @@
+﻿<Window x:Class="SystemClaima_MainWindow.LecturerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SystemClaima_MainWindow"
+        mc:Ignorable="d"
+        Title="LecturerWindow" Height="450" Width="800">
+    <!-- Main Grid Layout -->
+    <Grid>
+        <!-- Define two columns in the Grid: Left for navigation, Right for content -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Panel: Navigation for different sections -->
+        <StackPanel Background="#4C2947" Grid.Column="0">
+            <!-- Login Button -->
+            <Button x:Name="login_btn" Content="Login" 
+                Style="{StaticResource SideButtonStyle}" Margin="10" />
+            <!-- Claim Submission Button -->
+            <Button x:Name="submitClaim_btn" Content="Submit Claim" 
+                Style="{StaticResource SideButtonStyle}" Margin="10" />
+            <!-- Claim Status Tracking Button -->
+            <Button x:Name="claimStatus_btn" Content="Claim Status Tracking" 
+                Style="{StaticResource SideButtonStyle}" Margin="10" />
+            <!-- Exit Button -->
+            <Button x:Name="exit_btn" Content="EXIT"
+                Style="{StaticResource SideButtonStyle}" Margin="10" />
+        </StackPanel>
+
+        <!-- Right Panel: Main content area for forms and data -->
+        <StackPanel Grid.Column="1" Margin="20">
+            <!-- Claim Submission Section -->
+            <TextBlock Text="Submit Monthly Claim" FontSize="26" FontWeight="Bold" FontStyle="Italic" Margin="20,40,0,20"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Claim:" VerticalAlignment="Center"/>
+                <TextBox x:Name="hoursWorkedTBox" Width="300" Margin="10,0,0,0"/>
+            </StackPanel>
+            <TextBlock Text="Upload Supporting Document:" Margin="20,20,0,0"/>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="browseDocument_btn" Content="Browse" Style="{StaticResource ButtonStyle}" Width="100" />
+                <TextBlock x:Name="documentPathTBlock" Text="No file chosen" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            </StackPanel>
+            <Button x:Name="submit_Claim_btn" Content="Submit" Style="{StaticResource ButtonStyle}" Width="100" Margin="10,10,0,0"/>
+            
+        </StackPanel>
+    </Grid>
+</Window>
+
