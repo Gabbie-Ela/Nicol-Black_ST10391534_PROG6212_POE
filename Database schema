@@ -1,0 +1,73 @@
+Database SQL
+Create Administration Table
+CREATE TABLE Administration (
+    AdminID INT PRIMARY KEY,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    IsAdmin BOOLEAN DEFAULT TRUE
+);
+
+Create Lecturer Table
+CREATE TABLE Lecturer (
+    LecturerID INT PRIMARY KEY,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    IsAdmin BOOLEAN DEFAULT FALSE
+);
+
+Create Claim Table
+CREATE TABLE Claim (
+    ClaimID INT PRIMARY KEY,
+    LecturerID INT,
+    Claim FLOAT NOT NULL,
+    SubmissionDate DATETIME NOT NULL,
+    FOREIGN KEY (LecturerID) REFERENCES Lecturer(LecturerID) ON DELETE CASCADE
+);
+
+Create ClaimStatus Table
+CREATE TABLE ClaimStatus (
+    StatusID INT PRIMARY KEY,
+    ClaimID INT,
+    Status ENUM('Pending', 'Approved', 'Rejected') NOT NULL,
+    UpdatedDate DATETIME NOT NULL,
+    FOREIGN KEY (ClaimID) REFERENCES Claim(ClaimID) ON DELETE CASCADE
+);
+
+Create Document Table
+CREATE TABLE Document (
+    DocumentID INT PRIMARY KEY,
+    ClaimID INT,
+    DocumentPath VARCHAR(255) NOT NULL,
+    UploadDate DATETIME NOT NULL,
+    FOREIGN KEY (ClaimID) REFERENCES Claim(ClaimID) ON DELETE CASCADE
+);
+
+Admin Updates ClaimStatus (Many-to-Many)
+CREATE TABLE AdminUpdatesClaimStatus (
+    AdminID INT,
+    StatusID INT,
+    UpdatedDate DATETIME NOT NULL,
+    PRIMARY KEY (AdminID, StatusID),
+    FOREIGN KEY (AdminID) REFERENCES Administration(AdminID) ON DELETE CASCADE,
+    FOREIGN KEY (StatusID) REFERENCES ClaimStatus(StatusID) ON DELETE CASCADE
+);
+
+Lecturer Submits Claim (Many-to-Many)
+CREATE TABLE LecturerSubmitsClaim (
+    LecturerID INT,
+    ClaimID INT,
+    SubmissionDate DATETIME NOT NULL,
+    PRIMARY KEY (LecturerID, ClaimID),
+    FOREIGN KEY (LecturerID) REFERENCES Lecturer(LecturerID) ON DELETE CASCADE,
+    FOREIGN KEY (ClaimID) REFERENCES Claim(ClaimID) ON DELETE CASCADE
+);
+
+Lecturer Uploads Document (Many-to-Many)
+CREATE TABLE LecturerUploadsDocument (
+    LecturerID INT,
+    DocumentID INT,
+    UploadDate DATETIME NOT NULL,
+    PRIMARY KEY (LecturerID, DocumentID),
+    FOREIGN KEY (LecturerID) REFERENCES Lecturer(LecturerID) ON DELETE CASCADE,
+    FOREIGN KEY (DocumentID) REFERENCES Document(DocumentID) ON DELETE CASCADE
+);
