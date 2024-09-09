@@ -1,0 +1,46 @@
+﻿<Window x:Class="SystemClaima_MainWindow.AdminSignupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SystemClaima_MainWindow"
+        mc:Ignorable="d"
+        Title="AdminSignupWindow" Height="450" Width="800">
+    <Grid>
+        <!-- Define two columns in the Grid: Left for navigation, Right for content -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Panel: Navigation for different sections -->
+        <StackPanel Background="#4C2947" Grid.Column="0">
+            <!-- Login Button -->
+            <Button x:Name="login_btn" Content="Login" 
+                Style="{StaticResource SideButtonStyle}" Margin="10" />
+
+            <!-- Exit Button -->
+            <Button x:Name="exit_btn" Content="EXIT"
+                Style="{StaticResource SideButtonStyle}" Margin="10" />
+        </StackPanel>
+
+        <!-- Right Panel: Main content area for forms and data -->
+        <StackPanel Grid.Column="1" Margin="20">
+            <!-- Admin Signup Section -->
+            <TextBlock Text="Admin Signup" FontSize="26" FontWeight="Bold" FontStyle="Italic" Margin="0,0,0,20" />
+            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                <TextBlock Text="Email:" VerticalAlignment="Center"/>
+                <TextBox x:Name="emailTBox" Width="300" Margin="80,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                <TextBlock Text="Password:" VerticalAlignment="Center"/>
+                <PasswordBox x:Name="passwordTBox" Width="300" Margin="60,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                <TextBlock Text="Confirm Password:" VerticalAlignment="Center"/>
+                <PasswordBox x:Name="confirmPasswordTBox" Width="300" Margin="15,0,0,0"/>
+            </StackPanel>
+            <Button x:Name="signup_btn" Content="Signup" Style="{StaticResource ButtonStyle}" Width="100" Margin="10,10,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
